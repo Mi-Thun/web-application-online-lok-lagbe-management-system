@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lok Lagbe</title>
+    {% include "head.html" %}
+
+    <link href="/static/css/blog.css" rel="stylesheet">
+
+
+</head>
+<body>
+
+<div style="padding-bottom: 80px">
+    {% include "header.html" %}
+</div>
+
+<div class="padding">
+
+
+    <div class="header">
+        <h2>Lok Lagbe Blog Forums</h2>
+    </div>
+
+    <div class="row">
+        <div class="leftcolumn">
+            <div class="card">
+                <h2>TITLE HEADING</h2>
+                <h5>Title description, Dec 7, 2017</h5>
+                <div class="fakeimg" style="height:200px;">Image</div>
+                <p>Some text..</p>
+                <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do
+                    eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                    exercitation
+                    ullamco.</p>
+                <button style="border: transparent" type="submit">Read more...</button>
+            </div>
+            <div class="card">
+                <h2>TITLE HEADING</h2>
+                <h5>Title description, Sep 2, 2017</h5>
+                <div class="fakeimg" style="height:200px;">Image</div>
+                <p>Some text..</p>
+                <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do
+                    eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                    exercitation
+                    ullamco.</p>
+                <button style="border: transparent" type="submit">Read more...</button>
+            </div>
+            <div class="card">
+                <h2>TITLE HEADING</h2>
+                <h5>Title description, Sep 2, 2017</h5>
+                <div class="fakeimg" style="height:200px;">Image</div>
+                <p>Some text..</p>
+                <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do
+                    eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                    exercitation
+                    ullamco.</p>
+                <button style="border: transparent" type="submit">Read more...</button>
+            </div>
+        </div>
+        <div class="rightcolumn">
+            <div class="card">
+                <form action="/addblog" method="post" class="php-email-form">
+                    <h3>Post a blog</h3>
+                    <div class="row gy-4">
+                        <div class="col">
+                            <input
+                                    type="text"
+                                    name="title"
+                                    class="form-control"
+                                    required
+                                    placeholder="Title of Your Blog"
+                            />
+                        </div>
+                        <div>
+                            <input
+                                    type="file"
+                                    name="title"
+                                    class="form-control"
+                                    required
+                            />
+                        </div>
+                        <div class="form-group mt-3">
+                  <textarea
+                          class="form-control"
+                          name="descrp"
+                          rows="5"
+                          required
+                          placeholder="Blog Details, What's your thought?"
+                  ></textarea>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="my-5" type="submit" name="btn" value="#">
+                            Post Now
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="card">
+                <h2>About Us</h2>
+                <div class="fakeimg" style="height:100px;">Image</div>
+                <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+            </div>
+            <div class="card">
+                <h3>Popular Post</h3>
+                <div class="fakeimg">Image</div>
+                <br>
+                <div class="fakeimg">Image</div>
+                <br>
+                <div class="fakeimg">Image</div>
+            </div>
+            <div class="card">
+                <footer id="footer" style="background-color: transparent">
+                    <div class="footer-top" style="background-color: transparent">
+                        <h3 style="color: black">Follow Us</h3>
+                        <p style="color: black">
+                            Aftab Nagar, Dhaka-1212<br>
+                            Bangladesh <br>
+                            <strong>Phone:</strong> +8801700000000<br>
+                            <strong>Email:</strong> info@lok_lagbe.com<br>
+                        </p>
+                        <div class="social-links">
+                            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+</div>
+
+    {% include "footer.html" %}
+
+
+    <!-- Template Main JS File -->
+    <script src="/static/js/index.js"></script>
+
+</body>
+</html>

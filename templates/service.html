@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "head.html" %}
+    <link href="/static/css/style.css" rel="stylesheet">
+
+<link href="/static/css/search.css" rel="stylesheet">
+</head>
+
+<body>
+
+{% include "header.html" %}
+
+<!-- Workers -->
+
+<div style="padding-top: 70px">
+    <section class="menu" id="menu">
+
+        <div class="heading">
+            <h3>Workers Details</h3>
+        </div>
+
+        <div class="search__container" style="width: 430px; margin: 0 auto; padding-bottom: 25px">
+            <p class="search__title">
+                Go ahead, hover over search
+            </p>
+            <input class="search__input" type="text" placeholder="Search">
+        </div>
+
+        <div class="box-container">
+
+
+            <div class="box">
+                {% include "user.html" %}
+            </div>
+
+            <div class="box">
+                {% include "user.html" %}
+            </div>
+
+            <div class="box">
+                {% include "user.html" %}
+            </div>
+
+            <div class="box">
+                {% include "user.html" %}
+            </div>
+
+            <div class="box">
+                {% include "user.html" %}
+            </div>
+
+            <div class="box">
+                {% include "user.html" %}
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+{% include "footer.html" %}
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="/static/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="/static/vendor/aos/aos.js"></script>
+<script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/static/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="/static/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="/static/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="/static/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="/static/js/index.js"></script>
+
+</body>
+
+</html>
