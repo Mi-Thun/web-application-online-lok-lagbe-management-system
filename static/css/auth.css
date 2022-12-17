@@ -172,6 +172,7 @@ figure {
   margin: 0; }
 
 p {
+  transition: all 0.3s ease-in-out;
   margin-bottom: 0px;
   font-size: 15px;
   color: #777; }
@@ -186,6 +187,7 @@ h2 {
   font-size: 36px; }
 
 .main {
+  transition: all 0.3s ease-in-out;
   background: #f8f8f8;
   padding: 150px 0; }
 
@@ -198,7 +200,10 @@ body {
   color: #222;
   background: #f8f8f8;
   font-weight: 400;
-  font-family: Poppins; }
+  font-family: Poppins;
+  transition: all 0.3s ease-in-out;
+  transition: all 0.5s;
+}
 
 /*.container {*/
 /*  width: 900px;*/

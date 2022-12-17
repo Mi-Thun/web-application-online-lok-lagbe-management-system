@@ -43,5 +43,10 @@ def service():
     return render_template("service.html")
 
 
+@app.route('/userprofile/')
+def userprofile():
+    return render_template("userprofile.html")
+
+
 if __name__ == '__main__':
     app.run(debug=True)
