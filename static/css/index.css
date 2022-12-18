@@ -1480,21 +1480,6 @@ section {
   color: #f1f7ff;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .signin-content {
   padding-top: 67px;
   padding-bottom: 87px; }
@@ -1725,7 +1710,7 @@ label {
 
 label.error {
   position: relative;
-  background: url("../images/unchecked.gif") no-repeat;
+  background: url("/static/images/unchecked.gif") no-repeat;
   background-position-y: 3px;
   padding-left: 20px;
   display: block;

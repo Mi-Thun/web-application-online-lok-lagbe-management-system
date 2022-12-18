@@ -1,16 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>User Profile</title>
-
     {% include "head.html" %}
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-
-
 </head>
-<div style="padding-bottom: 80px">
+<div style="padding-bottom: 10px">
     {% include "header.html" %}
 </div>
 
@@ -19,8 +13,7 @@
     <div class="row">
         <div class="col-md-3 border-right">
             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                <img class="rounded-circle mt-5"
-                     width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span
+                <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span
                     class="font-weight-bold">Person</span><span
                     class="text-black-50">person@gmail.com</span><span> </span></div>
         </div>
@@ -31,63 +24,35 @@
                 </div>
                 <div class="row mt-2">
                     <div class="col-md-6">
-{#                        <label class="labels">Name</label>#}
-                        <input type="text" class="form-control"
-                               placeholder="first name" value="">
+                        Name:<input type="text" class="form-control" placeholder="first name" value="">
                     </div>
                     <div class="col-md-6">
-{#                        <label class="labels">Surname</label>#}
-                        <input type="text" class="form-control"
-                               value="" placeholder="surname">
+                        Surname:<input type="text" class="form-control" value="" placeholder="surname">
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-12">
-{#                        <label class="labels">Mobile Number</label>#}
-                        <input type="text"
-                               class="form-control"
-                               placeholder="enter phone number"
-                               value=""></div>
+                        Mobile Number:<input type="text" class="form-control" placeholder="enter phone number" value="">
+                    </div>
                     <div class="col-md-12">
-{#                        <label class="labels">Address Line 1</label>#}
-                        <input type="text"
-                               class="form-control"
-                               placeholder="enter address line 1"
-                               value=""></div>
-
+                        Address:<input type="text" class="form-control" placeholder="enter address line 1" value="">
+                    </div>
                     <div class="col-md-12">
-{#                        <label class="labels">Postcode</label>#}
-                        <input type="text" class="form-control"
-                               placeholder="enter Postcode"
-                               value=""></div>
+                        Postcode:<input type="text" class="form-control" placeholder="enter Postcode" value=""></div>
                     <div class="col-md-12">
-{#                        <label class="labels">State</label>#}
-                        <input type="text" class="form-control"
-                               placeholder="enter State"
-                               value=""></div>
+                        State:<input type="text" class="form-control" placeholder="enter State" value=""></div>
                     <div class="col-md-12">
-{#                        <label class="labels">Area</label>#}
-                        <input type="text" class="form-control"
-                               placeholder="enter Area"
-                               value=""></div>
+                        Area:<input type="text" class="form-control" placeholder="enter Area" value=""></div>
                     <div class="col-md-12">
-{#                        <label class="labels">Email ID</label>#}
-                        <input type="text" class="form-control"
-                               placeholder="enter email id"
-                               value=""></div>
+                        Email ID:<input type="text" class="form-control" placeholder="enter email id" value=""></div>
 
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-6">
-{#                        <label class="labels">Country</label>#}
-                        <input type="text" class="form-control"
-                               placeholder="country" value="">
+                        Country:<input type="text" class="form-control" placeholder="country" value="">
                     </div>
                     <div class="col-md-6">
-{#                        <label class="labels">Region</label>#}
-                        <input type="text"
-                               class="form-control" value=""
-                               placeholder="state"></div>
+                        Region:<input type="text" class="form-control" value="" placeholder="state"></div>
                 </div>
                 <div class="mt-5 text-center">
                     <button class="btn btn-primary profile-button" type="button">Save Profile</button>
@@ -101,19 +66,11 @@
                 </div>
                 <br>
                 <div class="col-md-12">
-{#                    <label class="labels">Experience in Designing</label>#}
-                    <input type="text"
-                           class="form-control"
-                           placeholder="experience"
-                           value="">
+                    Experience in Designing:<input type="text" class="form-control" placeholder="experience" value="">
                 </div>
                 <br>
                 <div class="col-md-12">
-{#                    <label class="labels">Additional Details</label>#}
-                    <input type="text"
-                           class="form-control"
-                           placeholder="additional details"
-                           value="">
+                    Additional Details:<input type="text" class="form-control" placeholder="additional details" value="">
                 </div>
             </div>
         </div>
@@ -122,10 +79,9 @@
 </div>
 </div>
 
-{% include "footer.html" %}
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<div>
+    {% include "footer.html" %}
+</div>
 
 </body>
 </html>

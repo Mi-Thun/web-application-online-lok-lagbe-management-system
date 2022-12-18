@@ -38,9 +38,9 @@ def user():
     return render_template("user.html")
 
 
-@app.route('/service/')
-def service():
-    return render_template("service.html")
+@app.route('/service/<string:n>/')
+def service(n):
+    return render_template("service.html", **locals())
 
 
 @app.route('/userprofile/')
