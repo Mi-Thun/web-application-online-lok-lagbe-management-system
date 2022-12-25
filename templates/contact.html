@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="form">
-                    <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                    <form method="POST">
                         <div class="row">
                             <div class="form-group col-lg-6">
                                 <input type="text" name="name" class="form-control" id="name"
@@ -62,13 +62,14 @@
                                 <textarea class="form-control" name="message" rows="5" placeholder="Message"
                                           required></textarea>
                         </div>
-                        <div class="my-3">
-                            <div class="loading">Loading</div>
-                            <div class="error-message"></div>
-                            <div class="sent-message">Your message has been sent. Thank you!</div>
-                        </div>
+{#                        <div class="my-3">#}
+{#                            <div class="loading">Loading</div>#}
+{#                            <div class="error-message"></div>#}
+{#                            <div class="sent-message">Your message has been sent. Thank you!</div>#}
+{#                        </div>#}
                         <div class="text-center">
-                            <button type="submit" title="Send Message">Send Message</button>
+                            <button type="submit" title="Send Message"><input type="submit" id="signup" class="form-submit" value="Send Message"/></button>
+
                         </div>
                     </form>
                 </div>

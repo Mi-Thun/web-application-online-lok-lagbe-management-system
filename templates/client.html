@@ -22,96 +22,53 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-md-3">
-                            Start Date:<input type="date" class="form-control" placeholder="first name" value=""
+                            Start Date:<input type="date" name = 'start_date' class="form-control" placeholder="first name" value=""
                                               required>
                         </div>
                         <div class="col-md-3">
-                            End Date<input type="date" class="form-control" value="" placeholder="surname" required>
+                            End Date<input type="date" name = 'end_date' class="form-control" value="" placeholder="surname" required>
                         </div>
                         <div class="col-md-3">
-                            Start_Time:<input type="time" class="form-control" placeholder="first name" value=""
+                            Start_Time:<input type="time" name="Start_Time" class="form-control" placeholder="first name" value=""
                                               required>
                         </div>
                         <div class="col-md-3">
-                            End_Time<input type="time" class="form-control" value="" placeholder="surname" required>
+                            End_Time<input type="time" name="end_time" class="form-control" value="" placeholder="surname" required>
                         </div>
                     </div>
                 </div>
                 <div class="row mt-2">
                     <div class="col-md-12">
-                        Address:<input type="text" class="form-control" placeholder="enter address line 1" value="">
+                        Worker_uid:<input type="text" name="Worker_uid" class="form-control" placeholder="enter address line 1" value="{{ form_data['_id'] }}">
                     </div>
                     <div class="col-md-12">
-                        Work Description:<input type="text" class="form-control" placeholder="enter work details"
+                        Address:<input type="text" name="address" class="form-control" placeholder="enter address line 1" value="">
+                    </div>
+                    <div class="col-md-12">
+                        Work Description:<input type="text" name="Work_Description" class="form-control" placeholder="enter work details"
                                                 value="">
                     </div>
                 </div>
                 <div class="row mt-2">
                     <div class="col-md-6">
-                        Name:<input type="text" class="form-control" placeholder="Name" value="" required>
+                        Name:<input type="text" name="name" class="form-control" placeholder="Name" value="" required>
                     </div>
                     <div class="col-md-6">
-                        Contract Information:<input type="number" class="form-control" placeholder="Phone Number"
+                        Contract Information:<input type="number" name="phonenumber" class="form-control" placeholder="Phone Number"
                                                     value="" required>
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-md-12">
-                        Email ID:<input type="text" class="form-control" value="">
+                        Email ID:<input type="text" name="email" class="form-control" value="">
                     </div>
-                    <!--                    <div class="col-md-12">-->
-                    <!--                        NID:<input type="file" name="title" class="form-control" required/>-->
-                    <!--                    </div>-->
-
                 </div>
-                <!--                <div class="row mt-2">-->
-                <!--                    <div class="col-md-6">-->
-                <!--                        Postcode:<input type="text" class="form-control" placeholder="enter Postcode" value=""></div>-->
-                <!--                    <div class="col-md-6">-->
-                <!--                        Area:<input type="text" class="form-control" placeholder="enter Area" value=""></div>-->
-                <!--                </div>-->
-                <!--                <div class="row mt-3">-->
-                <!--                    <div class="col-md-6">-->
-                <!--                        City:<input type="text" class="form-control" placeholder="country" value="">-->
-                <!--                    </div>-->
-                <!--                    <div class="col-md-6">-->
-                <!--                        Preferred area:<input type="text" class="form-control" value="" placeholder="state"></div>-->
-                <!--                </div>-->
                 <div class="mt-5 text-center">
-                    <button class="btn btn-primary profile-button" type="button">Save Profile</button>
+                        <input type="submit" class="form-submit" value="Submit Request"/>
                 </div>
             </div>
         </div>
-        <!--        <div class="col-md-4">-->
-        <!--            <div class="p-3 py-5">-->
-        <!--                <div class="d-flex justify-content-between align-items-center experience">-->
-        <!--                    <span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span>-->
-        <!--                </div>-->
-        <!--                <br>-->
-        <!--                <div class="col-md-12">-->
-        <!--                    Experience in Designing:<input type="text" class="form-control" placeholder="experience" value="">-->
-        <!--                </div>-->
-        <!--                <br>-->
-        <!--                <div class="col-md-12">-->
-        <!--                    Additional Details:<input type="text" class="form-control" placeholder="additional details" value="">-->
-        <!--                </div>-->
-        <!--            </div>-->
-        <!--            <div class="p-3 py-5">-->
-        <!--                <div class="d-flex justify-content-between align-items-center experience">-->
-        <!--                    <span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span>-->
-        <!--                </div>-->
-        <!--                <br>-->
-        <!--                <div class="col-md-12">-->
-        <!--                    Experience in Designing:<input type="text" class="form-control" placeholder="experience" value="">-->
-        <!--                </div>-->
-        <!--                <br>-->
-        <!--                <div class="col-md-12">-->
-        <!--                    Additional Details:<input type="text" class="form-control" placeholder="additional details" value="">-->
-        <!--                </div>-->
-        <!--            </div>-->
-        <!--        </div>-->
-        <!--</div>-->
     </form>
 </div>
 </div>

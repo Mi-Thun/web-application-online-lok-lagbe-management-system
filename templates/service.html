@@ -3,6 +3,10 @@
 <head>
     {% include "head.html" %}
     <link href="/static/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/usercard.css" rel="stylesheet">
+
 </head>
 <body>
 {% include "header.html" %}
@@ -18,9 +22,63 @@
         </div>
 
         <div class="box-container">
-            {% for i in range(12) %}
-                <div class="box">
-                    {% include "user.html" %}
+            {% for i in list %}
+                <div class="card1">
+                    <img src="/static/assets/img/hero-img.svg" alt="John" style="width:100%">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="title fw-bold text-black" style="font-size: 22px">{{ i['name'] }}</p>
+                        </div>
+{#                        <div class="col-md-6">#}
+{#                            <p class="title">{{ i['type'] }}</p>#}
+{#                        </div>#}
+                    </div>
+                    <p class="title">Working area:{{ i['parea'] }}</p>
+                    <p class="title">Working Type:{{ i['type'] }}</p>
+                    <table class="table table-striped">
+                        <th colspan="7">Working Time:</th>
+                        <tr>
+                            <td>SAT</td>
+                            <td>SUN</td>
+                            <td>MON</td>
+                            <td>TUE</td>
+                            <td>WED</td>
+                            <td>THU</td>
+                            <td>FRI</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="myDIV1"><i class="bi bi-clock"></i></div>
+                                <div class="hide1"> {{ i['sat'] }} </div>
+                            </td>
+                            <td>
+                                <div class="myDIV1"><i class="bi bi-clock"></i></div>
+                                <div class="hide1"> {{ i['sun'] }} </div>
+                            </td>
+                            <td>
+                                <div class="myDIV1"><i class="bi bi-clock"></i></div>
+                                <div class="hide1"> {{ i['mon'] }} </div>
+                            </td>
+                            <td>
+                                <div class="myDIV1"><i class="bi bi-clock"></i></div>
+                                <div class="hide1"> {{ i['tue'] }} </div>
+                            </td>
+                            <td>
+                                <div class="myDIV1"><i class="bi bi-clock"></i></div>
+                                <div class="hide1"> {{ i['wed'] }} </div>
+                            </td>
+                            <td>
+                                <div class="myDIV1"><i class="bi bi-clock"></i></div>
+                                <div class="hide1"> {{ i['thr'] }} </div>
+                            </td>
+                            <td>
+                                <div class="myDIV1"><i class="bi bi-clock"></i></div>
+                                <div class="hide1"> {{ i['ffri'] }} </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <p class="title">Charges per hour:{{ i['charge'] }}</p>
+                    <button class="button1"><a style="text-decoration:none;color:white" class="user" href="{{ url_for('client', my_var=i['email']) }}">Contract</a></button>
                 </div>
             {% endfor %}
         </div>
