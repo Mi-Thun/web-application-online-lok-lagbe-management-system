@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+<style>
+
+.hide {
+  display: none;
+}
+
+.myDIV:hover + .hide {
+  display: block;
+  color: red;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 350px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+
+table, th, td {
+  border: 1px solid;
+}
+button:hover, a:hover {
+  opacity: 0.7;
+}
+</style>
+</head>
+<body>
+<div class="card" >
+  <img src="/static/assets/img/hero-img.svg" alt="John" style="width:100%">
+  <div class="row" >
+    <div class="col-md-6">
+      <h6>User Name</h6>
+    </div>
+    <div class="col-md-6">
+      <h6>Job Type</h6>
+    </div>
+  </div >
+  <h6>Location </h6>
+  <h6>Working Time:</h6>
+    <table class="table table-striped">
+    <tr>
+      <td>SAT
+      </td>
+      <td>
+        SUN
+      </td>
+      <td>
+        MON
+      </td>
+       <td>
+        TUE
+      </td>
+      <td>
+        WED
+      </td>
+      <td>
+        THU
+      </td>
+      <td>
+        FRI
+      </td>
+    </tr>
+      <tr>
+        <td>
+        <div class="myDIV"><i class="bi bi-clock"></i></div>
+<div class="hide"> (8.30-10.0AM) (8.30-10.0AM)</div>
+      </td>
+        <td>
+        <div class="myDIV"> <i class="bi bi-clock"></i></div>
+<div class="hide"> (8.30-10.0AM) (8.30-10.0AM)</div>
+      </td>
+        <td>
+        <div class="myDIV"> <i class="bi bi-clock"></i></div>
+<div class="hide"> (8.30-10.0AM) (8.30-10.0AM)</div>
+      </td>
+        <td>
+        <div class="myDIV"> <i class="bi bi-clock"></i></div>
+<div class="hide"> (8.30-10.0AM) (8.30-10.0AM)</div>
+      </td>
+        <td>
+        <div class="myDIV"> <i class="bi bi-clock"></i></div>
+<div class="hide"> (8.30-10.0AM) (8.30-10.0AM)</div>
+      </td>
+        <td>
+        <div class="myDIV"> <i class="bi bi-clock"></i></div>
+<div class="hide"> (8.30-10.0AM) (8.30-10.0AM)</div>
+      </td>
+        <td>
+        <div class="myDIV"> <i class="bi bi-clock"></i></div>
+<div class="hide"> (8.30-10.0AM) (8.30-10.0AM)</div>
+      </td>
+      </tr>>
+</table>
+  <h6>Charges per hour:</h6>
+<!--  <div style="margin: 24px 0;">-->
+<!--    <a class="user" href="#"><i class="fa fa-dribbble"></i></a>-->
+<!--    <a class="user" href="#"><i class="fa fa-twitter"></i></a>-->
+<!--    <a class="user" href="#"><i class="fa fa-whatsapp"></i></a>-->
+<!--    <a class="user" href="#"><i class="fa fa-facebook"></i></a>-->
+<!--  </div>-->
+  <p><button><a style="text-decoration:none;color:white"   class="user" href="/client/">Contract</a></button></p>
+</div>
+
+</body>
+</html>

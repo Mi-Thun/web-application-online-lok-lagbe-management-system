@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "head.html" %}
+</head>
+<div style="padding-bottom: 10px">
+    {% include "header.html" %}
+</div>
+
+<body>
+<div class="rounded bg-white mt-5 mb-5">
+    <form method="POST">
+        <div class="row">
+            <div class="col-md-3 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                </div>
+            </div>
+            <div class="col-md-5 border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">DEAL DETAIL</h4>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-3">
+                            Start Date:<input type="date" class="form-control" placeholder="first name" value=""
+                                              required>
+                        </div>
+                        <div class="col-md-3">
+                            End Date<input type="date" class="form-control" value="" placeholder="surname" required>
+                        </div>
+                        <div class="col-md-3">
+                            Start_Time:<input type="time" class="form-control" placeholder="first name" value=""
+                                              required>
+                        </div>
+                        <div class="col-md-3">
+                            End_Time<input type="time" class="form-control" value="" placeholder="surname" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-12">
+                        Address:<input type="text" class="form-control" placeholder="enter address line 1" value="">
+                    </div>
+                    <div class="col-md-12">
+                        Work Description:<input type="text" class="form-control" placeholder="enter work details"
+                                                value="">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                        Name:<input type="text" class="form-control" placeholder="Name" value="" required>
+                    </div>
+                    <div class="col-md-6">
+                        Contract Information:<input type="number" class="form-control" placeholder="Phone Number"
+                                                    value="" required>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        Email ID:<input type="text" class="form-control" value="">
+                    </div>
+                    <!--                    <div class="col-md-12">-->
+                    <!--                        NID:<input type="file" name="title" class="form-control" required/>-->
+                    <!--                    </div>-->
+
+                </div>
+                <!--                <div class="row mt-2">-->
+                <!--                    <div class="col-md-6">-->
+                <!--                        Postcode:<input type="text" class="form-control" placeholder="enter Postcode" value=""></div>-->
+                <!--                    <div class="col-md-6">-->
+                <!--                        Area:<input type="text" class="form-control" placeholder="enter Area" value=""></div>-->
+                <!--                </div>-->
+                <!--                <div class="row mt-3">-->
+                <!--                    <div class="col-md-6">-->
+                <!--                        City:<input type="text" class="form-control" placeholder="country" value="">-->
+                <!--                    </div>-->
+                <!--                    <div class="col-md-6">-->
+                <!--                        Preferred area:<input type="text" class="form-control" value="" placeholder="state"></div>-->
+                <!--                </div>-->
+                <div class="mt-5 text-center">
+                    <button class="btn btn-primary profile-button" type="button">Save Profile</button>
+                </div>
+            </div>
+        </div>
+        <!--        <div class="col-md-4">-->
+        <!--            <div class="p-3 py-5">-->
+        <!--                <div class="d-flex justify-content-between align-items-center experience">-->
+        <!--                    <span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span>-->
+        <!--                </div>-->
+        <!--                <br>-->
+        <!--                <div class="col-md-12">-->
+        <!--                    Experience in Designing:<input type="text" class="form-control" placeholder="experience" value="">-->
+        <!--                </div>-->
+        <!--                <br>-->
+        <!--                <div class="col-md-12">-->
+        <!--                    Additional Details:<input type="text" class="form-control" placeholder="additional details" value="">-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--            <div class="p-3 py-5">-->
+        <!--                <div class="d-flex justify-content-between align-items-center experience">-->
+        <!--                    <span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span>-->
+        <!--                </div>-->
+        <!--                <br>-->
+        <!--                <div class="col-md-12">-->
+        <!--                    Experience in Designing:<input type="text" class="form-control" placeholder="experience" value="">-->
+        <!--                </div>-->
+        <!--                <br>-->
+        <!--                <div class="col-md-12">-->
+        <!--                    Additional Details:<input type="text" class="form-control" placeholder="additional details" value="">-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--</div>-->
+    </form>
+</div>
+</div>
+</div>
+
+<div>
+    {% include "footer.html" %}
+</div>
+
+</body>
+</html>

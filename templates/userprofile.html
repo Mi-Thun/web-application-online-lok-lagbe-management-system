@@ -10,71 +10,134 @@
 
 <body>
 <div class="rounded bg-white mt-5 mb-5">
-    <div class="row">
-        <div class="col-md-3 border-right">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span
-                    class="font-weight-bold">Person</span><span
-                    class="text-black-50">person@gmail.com</span><span> </span></div>
-        </div>
-        <div class="col-md-5 border-right">
-            <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="text-right">Profile Settings</h4>
+    <form method="POST">
+        <div class="row">
+            <div class="col-md-3 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                    <img class="rounded-circle mt-5" width="150px"
+                         src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span
+                        class="font-weight-bold">{{ result['name'] }}</span><span
+                        class="text-black-50"> {{ result['email'] }}</span><span> </span></div>
+            </div>
+            <div class="col-md-5 border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Profile Settings</h4>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            Name:<input type="text" class="form-control" name="Name" placeholder='Name' value={{ result['name'] }}
+                                required>
+                        </div>
+                        <div class="col-md-6">
+                            Phone Number:<input type="text" name="Phone Number" class="form-control"
+                                                value='{{ info['phone'] }}' placeholder='01700000000' required>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            Age:<input type="text" class="form-control" name="Age" placeholder="25" value={{ info['age'] }}'' required>
+                        </div>
+                        <div class="col-md-6">
+                            Sex:<input type="text" class="form-control" name="Sex" value='{{ info['sex'] }}' placeholder="male" required>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            Email ID:<input type="text" class="form-control" name="Email ID" placeholder='Email'
+                                            value='{{ result['email'] }}'>
+                        </div>
+                        <div class="col-md-12">
+                            NID:<input type="file" name="NID" class="form-control" required/>
+                        </div>
+                        <div class="col-md-12">
+                            Address:<input type="text" class="form-control" name="Address" placeholder="enter address line 1" value='{{ info['address'] }}'>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            Postcode:<input type="text" name="Postcode" class="form-control" placeholder="1212" value='{{ info['postcode'] }}'>
+                        </div>
+                        <div class="col-md-6">
+                            Area:<input type="text" name="Area" class="form-control" placeholder="Badda" value='{{ info['area'] }}'></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            City:<input type="text" name="City" class="form-control" placeholder="Dhaka" value='{{ info['city'] }}'>
+                        </div>
+                        <div style="visibility: {{ visibility1 }}" class="col-md-6">
+                            Preferred area:<input type="text" class="form-control" name="Preferred area" value='{{ info['parea'] }}'
+                                                  placeholder="Merul Badda, Middle Badda"></div>
+                    </div>
+                    <div style="visibility: {{ visibility1 }}" class="row mt-2">
+                        <div class="col-md-6">
+                            Experience:<input type="text" class="form-control" name="Experience" placeholder="experience" value='{{ info['experience'] }}'>
+                        </div>
+                        <div class="col-md-6">
+                            Additional Details:<input type="text" name="Additional Details" class="form-control" placeholder="additional details"
+                                                      value='{{ info['additional'] }}'>
+                        </div>
+                    </div>
+                    <div class="mt-5 text-center">
+{#                        <button class="btn btn-primary profile-button" type="button">Save Profile</button>#}
+                        <input type="submit" id="update" class="form-submit" value="Update Now"/>
+                    </div>
                 </div>
-                <div class="row mt-2">
-                    <div class="col-md-6">
-                        Name:<input type="text" class="form-control" placeholder="first name" value="">
-                    </div>
-                    <div class="col-md-6">
-                        Surname:<input type="text" class="form-control" value="" placeholder="surname">
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-12">
-                        Mobile Number:<input type="text" class="form-control" placeholder="enter phone number" value="">
+            </div>
+            <div style="visibility: {{ visibility1 }}" class="col-md-4 pt-3">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center experience">
+                        <h4 class="text-right">Free Working Time</h4>
                     </div>
                     <div class="col-md-12">
-                        Address:<input type="text" class="form-control" placeholder="enter address line 1" value="">
+                        Saturday:<input type="text" name="Saturday" class="form-control" placeholder="3pm-6pm, 7pm-9pm" value='{{ info['sat'] }}'>
                     </div>
                     <div class="col-md-12">
-                        Postcode:<input type="text" class="form-control" placeholder="enter Postcode" value=""></div>
+                        Sunday:<input type="text" name="Sunday" class="form-control" placeholder="3pm-6pm, 7pm-9pm" value='{{ info['sun'] }}'>
+                    </div>
                     <div class="col-md-12">
-                        State:<input type="text" class="form-control" placeholder="enter State" value=""></div>
+                        Monday:<input type="text" name="Monday" class="form-control" placeholder="3pm-6pm, 7pm-9pm" value='{{ info['mon'] }}'>
+                    </div>
+                    <div>
+                        Tuesday:<input type="text" name="Tuesday" class="form-control" placeholder="3pm-6pm, 7pm-9pm" value='{{ info['tue'] }}'>
+                    </div>
                     <div class="col-md-12">
-                        Area:<input type="text" class="form-control" placeholder="enter Area" value=""></div>
+                        Wednesday:<input type="text" name="Wednesday" class="form-control" placeholder="3pm-6pm, 7pm-9pm" value='{{ info['wed'] }}'>
+                    </div>
                     <div class="col-md-12">
-                        Email ID:<input type="text" class="form-control" placeholder="enter email id" value=""></div>
+                        Thursday:<input type="text" name="Thursday"  class="form-control" placeholder="3pm-6pm, 7pm-9pm" value='{{ info['thr'] }}'>
+                    </div>
+                    <div class="col-md-12">
+                        Friday:<input type="text" name="Friday" class="form-control" placeholder="3pm-6pm, 7pm-9pm" value='{{ info['ffri'] }}'>
+                    </div>
+
+                    <div class="p-3 py-5">
+                        <div class="d-flex justify-content-between align-items-center experience">
+                            <h4 class="text-right">Work type and charge:</h4>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                Work Type: <select id="work_type" name="work_type">
+                                <option value="Helping Hand">Helping Hand</option>
+                                <option value="Chef">Chef</option>
+                                <option value="Baby Setter">Baby Setter</option>
+                                <option value="Plamber">Plamber</option>
+                                <option value="Electrician">Electrician</option>
+                                <option value="Driver">Driver</option>
+                            </select>
+                            </div>
+                            <div class="col-md-6">
+                                Charge per hour:<input type="text" name="Charge per hour" class="form-control"
+                                                       placeholder='250 taka' value='{{ info['charge'] }}' required>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
-                <div class="row mt-3">
-                    <div class="col-md-6">
-                        Country:<input type="text" class="form-control" placeholder="country" value="">
-                    </div>
-                    <div class="col-md-6">
-                        Region:<input type="text" class="form-control" value="" placeholder="state"></div>
-                </div>
-                <div class="mt-5 text-center">
-                    <button class="btn btn-primary profile-button" type="button">Save Profile</button>
-                </div>
             </div>
+
         </div>
-        <div class="col-md-4">
-            <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center experience">
-                    <span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span>
-                </div>
-                <br>
-                <div class="col-md-12">
-                    Experience in Designing:<input type="text" class="form-control" placeholder="experience" value="">
-                </div>
-                <br>
-                <div class="col-md-12">
-                    Additional Details:<input type="text" class="form-control" placeholder="additional details" value="">
-                </div>
-            </div>
-        </div>
-    </div>
+    </form>
 </div>
 </div>
 </div>
