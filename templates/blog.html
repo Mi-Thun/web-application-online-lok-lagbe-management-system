@@ -16,40 +16,55 @@
     </div>
 
     <div class="row">
-        <div class="leftcolumn">
-            {% for i in range(3) %}
-                <div class="card">
-                    <h2>TITLE HEADING</h2>
-                    <h5>Title description, Dec 7, 2017</h5>
-                    <div class="fakeimg" style="height:200px;">Image</div>
-                    <p>Some text..</p>
-                    <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do
-                        eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation
-                        ullamco.</p>
-                    <button style="border: transparent" type="submit">Read more...</button>
-                </div>
-            {% endfor %}
-        </div>
+        {% if havePost == True %}
+            <div class="leftcolumn">
+                {% for i in list %}
+                    <div class="card">
+                        <h2>{{ i['tittle'] }}</h2>
+                        <div style="height:200px;"><img src="/static/blogImage/{{ i['image'] }}" height="100%"
+                                                        width="100%"></div>
+                        {#                    <p>Some text..</p>#}
+                        <p>{{ i['content'] }}</p>
+                        {% if session['email'] == i['email'] %}
+                            <div style="display: flex; margin: auto auto">
+                                {#                        <button style="border: transparent; margin: 8px" type="submit">Edit</button>#}
+                                {#                        <button style="border: transparent; margin: 8px" type="submit">Delete</button>#}
+                                <button><a href="{{ url_for('blog', id=i['_id'], typ='edit') }}">Edit</a></button>
+                                <button><a href="{{ url_for('blog', id=i['_id'], typ='dlt') }}">Delete</a></button>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
         <div class="rightcolumn">
             <div class="card">
-                <form action="/addblog" method="post" class="php-email-form">
+                <form method="post">
+                <div class="col">
+                        <input height="2px" type="hidden" name="ide" value="{{ pre_id }}"><br/><br/></div>
+                    <div class="col">
                     <h3>Post a blog</h3>
-                    <div class="row gy-4">
-                        <div class="col">
-                            <input type="text" name="title" class="form-control" required placeholder="Title of Your Blog"/>
+                        <div class="row gy-4">
+                            <div class="col">
+                                <input type="text" name="tittle" class="form-control" required
+                                      value="{{ pre_tittle }}" placeholder="Title of Your Blog"/>
+                            </div>
+                            <div>
+                                <input type="file" name="image" class="form-control" value="{{ pre_photo }}" required/>
+                            </div>
+                            <div class="form-group mt-3">
+                                <textarea class="form-control" name="content" rows="5" required
+                                          placeholder="Blog Details, What's your thought?">{{ pre_content }}</textarea>
+                            </div>
                         </div>
-                        <div>
-                            <input type="file" name="title" class="form-control" required/>
+                        <div class="text-center">
+                            {% if isPost %}
+                                <p>{{ result }}</p>
+                            {% endif %}
                         </div>
-                        <div class="form-group mt-3">
-                            <textarea class="form-control" name="descrp" rows="5" required placeholder="Blog Details, What's your thought?"></textarea>
+                        <div class="text-center">
+                            <button class="my-5" type="submit">Post Now</button>
                         </div>
-                    </div>
-                    <div class="text-center">
-                        <button class="my-5" type="submit" name="btn" value="#">Post Now</button>
-                    </div>
                 </form>
             </div>
             <div class="card">
@@ -57,12 +72,12 @@
                 <div class="fakeimg" style="height:100px;">Image</div>
                 <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
             </div>
-{#            <div class="card">#}
-{#                <h3>Popular Post</h3>#}
-{#                <div class="fakeimg">Image</div><br>#}
-{#                <div class="fakeimg">Image</div><br>#}
-{#                <div class="fakeimg">Image</div>#}
-{#            </div>#}
+            {#            <div class="card">#}
+            {#                <h3>Popular Post</h3>#}
+            {#                <div class="fakeimg">Image</div><br>#}
+            {#                <div class="fakeimg">Image</div><br>#}
+            {#                <div class="fakeimg">Image</div>#}
+            {#            </div>#}
             <div class="card">
                 <footer id="footer" style="background-color: transparent">
                     <div class="footer-top" style="background-color: transparent">

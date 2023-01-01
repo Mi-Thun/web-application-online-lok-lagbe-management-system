@@ -2,6 +2,7 @@ from flask import *
 from flask import Flask, render_template, redirect, request, session
 from flask_session import Session
 import pymongo
+from bson.objectid import ObjectId
 from flask_mail import *
 
 app = Flask(__name__)
@@ -16,6 +17,7 @@ deal_info = mydb["deal_info"]
 feedback = mydb["feedback"]
 contact_info = mydb["contact_info"]
 client_info = mydb["client_info"]
+Blog_Info = mydb["Blog_Info"]
 
 
 @app.route("/")
@@ -184,15 +186,106 @@ def contact():
     return render_template("contact.html")
 
 
-@app.route('/blog/')
+@app.route('/blog/', methods=["GET", "POST"])
 def blog():
-    return render_template("blog.html")
+    edit = False
+    if request.args.get('id') is not None:
+        if request.args.get('typ') == 'dlt':
+            idf = request.args.get('id')
+            Blog_Info.delete_one({'_id': ObjectId(idf)})
+        if request.args.get('typ') == 'edit':
+            edit = True
+            idf = request.args.get('id')
+            infoB = Blog_Info.find_one({'_id': ObjectId(idf)})
+            pre_tittle = infoB['tittle']
+            pre_content = infoB['content']
+            pre_id = infoB['_id']
+            pre_photo = infoB['image']
+    else:
+        f = "Don't have any id"
+    list = []
+    havePost = False
+    isPost = False
+    for data in Blog_Info.find():
+        list.append(data)
+        havePost = True
+    print(list)
+    result = ''
+    isPost = False
+    if request.method == "POST":
+        isPost = True
+        email = session['email']
+        tittle = request.form['tittle']
+        content = request.form['content']
+        image = request.form['image']
+        try:
+            Blog_Info.delete_one({'_id': ObjectId(request.form['ide'])})
+        except:
+            print('done')
+        Blog_Info.insert_one({'tittle': tittle, 'content': content, 'image': image, 'email': email})
+        result = "Insert Successfully"
+        print({'tittle': tittle, 'content': content, 'image': image})
+        return render_template("blog.html", **locals())
+    return render_template("blog.html", **locals())
 
+
+# @app.route('/blog/', methods=["GET", "POST"])
+# def blog():
+#     edit = False
+#     pre_id1 = ''
+#     if request.args.get('id') is not None:
+#         if request.args.get('typ') == 'dlt':
+#             idf = request.args.get('id')
+#             Blog_Info.delete_one({'_id': ObjectId(idf)})
+#         if request.args.get('typ') == 'edit':
+#             edit = True
+#             idf = request.args.get('id')
+#             infoB = Blog_Info.find_one({'_id': ObjectId(idf)})
+#             pre_tittle = infoB['tittle']
+#             pre_content = infoB['content']
+#             pre_id = infoB['_id']
+#             pre_id1 = pre_id
+#             pre_photo = infoB['image']
+#     else:
+#         f = "Don't have any id"
+#     list = []
+#     havePost = False
+#     isPost = False
+#     for data in Blog_Info.find():
+#         list.append(data)
+#         havePost = True
+#     result = ''
+#     isPost = False
+#     if request.method == "POST":
+#         isPost = True
+#         email = session['email']
+#         tittle = request.form['tittle']
+#         content = request.form['content']
+#         image = request.form['image']
+#         print(request.form['ide'])
+#         print(pre_id1)
+#         if request.form['ide'] == pre_id1:
+#             try:
+#                 Blog_Info.delete_one({'_id': ObjectId(pre_id1)})
+#                 Blog_Info.insert_one({'tittle': tittle, 'content': content, 'image': image, 'email': email})
+#                 result = "Update Successfully"
+#                 print('yes')
+#                 return render_template("blog.html", **locals())
+#             except:
+#                 f = 'fdvfd'
+#         else:
+#             print('no')
+#             Blog_Info.insert_one({'tittle': tittle, 'content': content, 'image': image, 'email': email})
+#             result = "Insert Successfully"
+#             return render_template("blog.html", **locals())
+#     return render_template("blog.html", **locals())
+#
 
 @app.route('/logout/')
 def logout():
     session.clear()
     return render_template("index.html", **locals())
+
 
 @app.route('/about/')
 def about():
@@ -214,7 +307,7 @@ def service(n):
             listS.append(form_data)
     for form_data in mydb.worker_info.find({'type': n}):
         list.append(form_data)
-    if len(listS)==0:
+    if len(listS) == 0:
         message = 'No data found'
     else:
         message = 'Your search result:'
@@ -245,7 +338,8 @@ def client():
         phonenumber = form_data['phonenumber']
         email = form_data['email']
         dict = {'start_date': start_date, 'end_date': end_date, 'Start_Time': Start_Time,
-                'end_time': end_time, 'Worker_uid': Worker_uid, 'address': address, 'Work_Description': Work_Description,
+                'end_time': end_time, 'Worker_uid': Worker_uid, 'address': address,
+                'Work_Description': Work_Description,
                 'name': name, 'phonenumber': phonenumber, 'email': email}
         deal_info.insert_one(dict)
         return render_template("index.html", **locals())
