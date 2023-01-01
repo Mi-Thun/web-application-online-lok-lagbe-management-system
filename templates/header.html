@@ -4,7 +4,7 @@
 
         <div class="logo">
             <h1><a href="/">Lok Lagbe</a></h1>
-{#            <a href="index.html"><img src="/static/assets/img/logo.png" alt="" class="img-fluid"></a>#}
+            {#            <a href="index.html"><img src="/static/assets/img/logo.png" alt="" class="img-fluid"></a>#}
         </div>
 
         <nav id="navbar" class="navbar">
@@ -25,8 +25,12 @@
                 <li><a class="nav-link scrollto" href="/blog/">Blog</a></li>
                 <li><a class="nav-link scrollto" href="/about/">About</a></li>
                 <li><a class="nav-link scrollto" href="/contact/">Contact</a></li>
-                <li><a class="nav-link scrollto " href="/login/">Login</a></li>
-                <li><a class="nav-link scrollto " href="/userprofile/"><img height="30px" width="30px" src="/static/images/a.jpg"></a></li>
+                {% if session["logged_in"] %}
+                    <li><a class="nav-link scrollto " href="/userprofile/"><img height="30px" width="30px" src="/static/images/a.jpg"></a></li>
+                    <li><a class="nav-link scrollto " href="/logout/">Logout</a></li>
+                {% else %}
+                    <li><a class="nav-link scrollto " href="/login/">Login</a></li>
+                {% endif %}
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->

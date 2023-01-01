@@ -45,25 +45,25 @@
                     <div class="row mt-3">
                         <div class="col-md-12">
                             Email ID:<input type="text" class="form-control" name="Email ID" placeholder='Email'
-                                            value='{{ result['email'] }}'>
+                                            value='{{ result['email'] }}' required>
                         </div>
                         <div class="col-md-12">
                             NID:<input type="file" name="NID" class="form-control" required/>
                         </div>
                         <div class="col-md-12">
-                            Address:<input type="text" class="form-control" name="Address" placeholder="enter address line 1" value='{{ info['address'] }}'>
+                            Address:<input type="text" class="form-control" name="Address" placeholder="enter address line 1" value='{{ info['address'] }}' required>
                         </div>
                     </div>
                     <div class="row mt-2">
                         <div class="col-md-6">
-                            Postcode:<input type="text" name="Postcode" class="form-control" placeholder="1212" value='{{ info['postcode'] }}'>
+                            Postcode:<input type="text" name="Postcode" class="form-control" placeholder="1212" value='{{ info['postcode'] }}' required>
                         </div>
                         <div class="col-md-6">
-                            Area:<input type="text" name="Area" class="form-control" placeholder="Badda" value='{{ info['area'] }}'></div>
+                            Area:<input type="text" name="Area" class="form-control" placeholder="Badda" value='{{ info['area'] }}' required></div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-6">
-                            City:<input type="text" name="City" class="form-control" placeholder="Dhaka" value='{{ info['city'] }}'>
+                            City:<input type="text" name="City" class="form-control" placeholder="Dhaka" value='{{ info['city'] }}' required>
                         </div>
                         <div style="visibility: {{ visibility1 }}" class="col-md-6">
                             Preferred area:<input type="text" class="form-control" name="Preferred area" value='{{ info['parea'] }}'
@@ -128,7 +128,7 @@
                             </div>
                             <div class="col-md-6">
                                 Charge per hour:<input type="text" name="Charge per hour" class="form-control"
-                                                       placeholder='250 taka' value='{{ info['charge'] }}' required>
+                                                       placeholder='250 taka' value='{{ info['charge'] }}'>
                             </div>
                         </div>
                     </div>

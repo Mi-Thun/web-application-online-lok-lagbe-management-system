@@ -10,7 +10,7 @@
 
 <section style="padding-top: 80px" class="sign-up">
     <div class="container">
-        <div class="signup-content" data-aos="zoom-in-up">
+        <div class="signup-content">
             <div class="signup-image">
                 <figure><img src="/static/images/signup-image.jpg" alt="sing up image"></figure>
                 <a href="#" class="signup-image-link">I am already member</a>
@@ -43,11 +43,13 @@
                         <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all
                             statements in <a href="#" class="term-service">Terms of service</a></label>
                     </div>
+                    <div>
+                        {% if isPost %}
+                            <p>{{ message }}</p>
+                        {% endif %}
+                    </div>
                     <div class="form-group form-button">
                         <input type="submit" id="signup" class="form-submit" value="Register"/>
-                    </div>
-                    <div>
-                        {{ message }}
                     </div>
                 </form>
             </div>
