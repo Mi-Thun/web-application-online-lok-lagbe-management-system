@@ -21,14 +21,13 @@
                 <input class="search__input" name="search" type="text" placeholder="Search by place">
             </div>
         </form>
-
+        {% if isPost %}
+            <div class="heading">
+                <h3>Search Details</h3>
+            </div>
+            <h3 align="center">{{ message }}</h3>
+        {% endif %}
         <div class="box-container">
-            {% if isPost %}
-                <div class="heading">
-                    <h3>Search Details</h3>
-                </div>
-                <h3 align="center">{{ message }}</h3>
-            {% endif %}
             {% for i in listS %}
                 <div class="card1">
                     <img src="/static/assets/img/hero-img.svg" alt="John" style="width:100%">
@@ -90,11 +89,11 @@
                 </div>
             {% endfor %}
         </div>
-
-        <div class="box-container">
-            <div class="heading">
-                <h3>All Details</h3>
+<div class="heading">
+                <h3 style="padding-top: 8px">All Details</h3>
             </div>
+        <div class="box-container">
+
             {% for i in list %}
                 <div class="card1">
                     <img src="/static/assets/img/hero-img.svg" alt="John" style="width:100%">

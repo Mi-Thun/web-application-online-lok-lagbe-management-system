@@ -32,21 +32,20 @@ def login():
         if session["logged_in"]:
             return render_template("index.html ", **locals())
     except:
-        print('')
-    if request.method == "POST":
-        form_data = request.form
-        useremail = form_data["your_email"]
-        password = form_data["your_pass"]
-        result = user_info.find_one({"email": useremail, "pass": password})
-        if result is None:
-            error = "Enter valid information"
-        else:
-            error = "Login Successful."
-        if error == "Login Successful.":
-            session["logged_in"] = True
-            session["email"] = useremail
-            session["name"] = result['name']
-            return render_template("index.html ", **locals())
+        if request.method == "POST":
+            form_data = request.form
+            useremail = form_data["your_email"]
+            password = form_data["your_pass"]
+            result = user_info.find_one({"email": useremail, "pass": password})
+            if result is None:
+                error = "Enter valid information"
+            else:
+                error = "Login Successful."
+            if error == "Login Successful.":
+                session["logged_in"] = True
+                session["email"] = useremail
+                session["name"] = result['name']
+                return render_template("index.html ", **locals())
     return render_template("login.html", **locals())
 
 
