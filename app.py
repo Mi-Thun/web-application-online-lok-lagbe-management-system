@@ -1,11 +1,23 @@
-from flask import *
-from flask import Flask, render_template, redirect, request, session
-from flask_session import Session
+from random import randint
+
+from flask import Flask, render_template, request, session
 import pymongo
 from bson.objectid import ObjectId
 from flask_mail import *
+import time
 
 app = Flask(__name__)
+
+app = Flask(__name__)
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'mohsenulkabirmi8486@gmail.com'
+app.config['MAIL_PASSWORD'] = ''
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+
+app.config.from_object(__name__)
+mail = Mail(app)
 
 app.secret_key = 'super secret key'
 
@@ -18,6 +30,7 @@ feedback = mydb["feedback"]
 contact_info = mydb["contact_info"]
 client_info = mydb["client_info"]
 Blog_Info = mydb["Blog_Info"]
+pass_recover_info = mydb["pass_recover_info"]
 
 
 @app.route("/")
@@ -228,58 +241,6 @@ def blog():
     return render_template("blog.html", **locals())
 
 
-# @app.route('/blog/', methods=["GET", "POST"])
-# def blog():
-#     edit = False
-#     pre_id1 = ''
-#     if request.args.get('id') is not None:
-#         if request.args.get('typ') == 'dlt':
-#             idf = request.args.get('id')
-#             Blog_Info.delete_one({'_id': ObjectId(idf)})
-#         if request.args.get('typ') == 'edit':
-#             edit = True
-#             idf = request.args.get('id')
-#             infoB = Blog_Info.find_one({'_id': ObjectId(idf)})
-#             pre_tittle = infoB['tittle']
-#             pre_content = infoB['content']
-#             pre_id = infoB['_id']
-#             pre_id1 = pre_id
-#             pre_photo = infoB['image']
-#     else:
-#         f = "Don't have any id"
-#     list = []
-#     havePost = False
-#     isPost = False
-#     for data in Blog_Info.find():
-#         list.append(data)
-#         havePost = True
-#     result = ''
-#     isPost = False
-#     if request.method == "POST":
-#         isPost = True
-#         email = session['email']
-#         tittle = request.form['tittle']
-#         content = request.form['content']
-#         image = request.form['image']
-#         print(request.form['ide'])
-#         print(pre_id1)
-#         if request.form['ide'] == pre_id1:
-#             try:
-#                 Blog_Info.delete_one({'_id': ObjectId(pre_id1)})
-#                 Blog_Info.insert_one({'tittle': tittle, 'content': content, 'image': image, 'email': email})
-#                 result = "Update Successfully"
-#                 print('yes')
-#                 return render_template("blog.html", **locals())
-#             except:
-#                 f = 'fdvfd'
-#         else:
-#             print('no')
-#             Blog_Info.insert_one({'tittle': tittle, 'content': content, 'image': image, 'email': email})
-#             result = "Insert Successfully"
-#             return render_template("blog.html", **locals())
-#     return render_template("blog.html", **locals())
-#
-
 @app.route('/logout/')
 def logout():
     session.clear()
@@ -289,6 +250,46 @@ def logout():
 @app.route('/about/')
 def about():
     return render_template("about.html")
+
+
+@app.route('/forgetPassword/', methods=["GET", "POST"])
+def forgetPassword():
+    if request.method == 'POST':
+        email = request.form['email']
+        if email == '':
+            message = 'Enter email address'
+            return render_template("forgetPassword.html", **locals())
+        else:
+            user = user_info.find_one({'email': email})
+            if user is not None:
+                otp = randint(0000, 9999)
+                message = 'Check your mailbox. Link will valid only for 5 minutes.'
+                pass_recover_info.insert_one({'email': email, 'otp': otp})
+                msg = Message('Password recover link..', sender='mohsenulkabirmi8486@gmail.com',
+                              recipients=[email])
+                msg.body = "http://127.0.0.1:5000/changePassword/" + str(user['_id']) + str(otp)
+                mail.send(msg)
+                time.sleep(300)
+                pass_recover_info.delete_one({'email': email, 'otp': otp})
+    return render_template("forgetPassword.html", **locals())
+
+
+@app.route('/changePassword/<string:n>', methods=["GET", "POST"])
+def changePassword(n):
+    a = pass_recover_info.find_one({'otp': int(n[24:])})
+    print(a)
+    find = user_info.find_one({'_id': ObjectId(n[:24])})
+    if request.method == 'POST':
+        pass1 = request.form['pass1']
+        pass2 = request.form['pass2']
+        if a:
+            if pass1 == pass2:
+                find['pass'] = pass1
+                user_info.delete_one({'email': find['email']})
+                user_info.insert_one(dict(find))
+                pass_recover_info.delete_one({'email': find['email']})
+                return render_template("login.html", **locals())
+    return render_template("changePassword.html", **locals())
 
 
 @app.route('/service/<string:n>/', methods=["GET", "POST"])
@@ -301,7 +302,6 @@ def service(n):
         isPost = True
         f = request.form
         s = f['search']
-        # s = s.split(" ")
         for form_data in mydb.worker_info.find({'type': n, 'area': f['search']}):
             listS.append(form_data)
     for form_data in mydb.worker_info.find({'type': n}):
@@ -331,6 +331,8 @@ def client():
         Start_Time = form_data["Start_Time"]
         end_time = form_data["end_time"]
         Worker_uid = form_data['Worker_uid']
+        worker_details = worker_info.find_one(ObjectId(Worker_uid))
+        # worker_email = worker_details['']
         address = form_data['address']
         Work_Description = form_data["Work_Description"]
         name = form_data['name']
@@ -341,6 +343,9 @@ def client():
                 'Work_Description': Work_Description,
                 'name': name, 'phonenumber': phonenumber, 'email': email}
         deal_info.insert_one(dict)
+        msg = Message('New offer arrived', sender='mohsenulkabirmi8486@gmail.com', recipients=['harbad345@gmail.com'])
+        msg.body = "You have a new offer."
+        mail.send(msg)
         return render_template("index.html", **locals())
     return render_template("client.html", **locals())
 

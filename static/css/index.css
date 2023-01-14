@@ -1708,6 +1708,27 @@ label {
 .label-has-error {
   top: 22%; }
 
+#notification-icon {
+    position: relative;
+}
+
+#notification-icon img {
+    width: 20px;
+    height: 20px;
+}
+
+.notification-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    padding: 2px 5px;
+    border-radius: 50%;
+    display: none;
+}
+
 label.error {
   position: relative;
   background: url("/static/images/unchecked.gif") no-repeat;

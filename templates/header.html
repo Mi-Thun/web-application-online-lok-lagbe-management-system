@@ -26,8 +26,18 @@
                 <li><a class="nav-link scrollto" href="/about/">About</a></li>
                 <li><a class="nav-link scrollto" href="/contact/">Contact</a></li>
                 {% if session["logged_in"] %}
-                    <li><a class="nav-link scrollto " href="/userprofile/"><img height="30px" width="30px" src="/static/images/a.jpg"></a></li>
+                    <li class="dropdown"><a id="notification-icon" href="#">
+                            <button id="show-page"><img src="/static/img/notification.png" alt="Notification icon"></button>
+                            <span class="notification-count"></span>
+                        </a>
+                    <ul>
+                        <li><a href="#">New Offer arrived check you mail</a></li>
+                    </ul>
+                    </li>
+                    <li><a class="nav-link scrollto " href="/userprofile/"><img height="30px" width="30px"
+                                                                                src="/static/images/a.jpg"></a></li>
                     <li><a class="nav-link scrollto " href="/logout/">Logout</a></li>
+                    <iframe id="content" src="" style="display:none"></iframe>
                 {% else %}
                     <li><a class="nav-link scrollto " href="/login/">Login</a></li>
                 {% endif %}
@@ -36,6 +46,15 @@
         </nav><!-- .navbar -->
     </div>
 </header><!-- #header -->
+
+
+{#<script>#}
+{#    document.getElementById("show-page").addEventListener("click", function(){#}
+{#    document.getElementById("content").src = "client.html";#}
+{#    document.getElementById("content").style.display = "block";#}
+{#});#}
+
+</script>
 
 
 
