@@ -3,6 +3,16 @@
 <head>
     {% include "head.html" %}
     <link href="/static/css/blog.css" rel="stylesheet">
+        <style>
+        .c {
+            background: #007bff;
+            border: 0;
+            padding: 5px;
+            margin: 5px;
+            text-align: center;
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
 
@@ -13,6 +23,13 @@
 <div class="padding">
     <div class="header">
         <h2>Lok Lagbe Blog Forums</h2>
+        <section class="menu">
+            <form method="post">
+                <div class="search__container" style="width: 430px; margin: 0 auto; padding-bottom: 25px">
+                    <input class="search__input" name="search" type="text" placeholder="Search by place">
+                </div>
+            </form>
+        </section>
     </div>
 
     <div class="row">
@@ -21,16 +38,16 @@
                 {% for i in list %}
                     <div class="card">
                         <h2>{{ i['tittle'] }}</h2>
-                        <div style="height:200px;"><img src="/static/blogImage/{{ i['image'] }}" height="100%"
-                                                        width="100%"></div>
-                        {#                    <p>Some text..</p>#}
-                        <p>{{ i['content'] }}</p>
+                        <div style="height:200px; margin-left: 25%; margin-right: 25%"><img
+                                src="/static/blogImage/{{ i['image'] }}" height="100%"
+                                width="500px"></div>
+                        <p><b>Author: </b>{{ i['name'] }}</p>
+                        <hr>
+                        <p><b>Content: </b>{{ i['content'] }}</p>
                         {% if session['email'] == i['email'] %}
                             <div style="display: flex; margin: auto auto">
-                                {#                        <button style="border: transparent; margin: 8px" type="submit">Edit</button>#}
-                                {#                        <button style="border: transparent; margin: 8px" type="submit">Delete</button>#}
-                                <button><a href="{{ url_for('blog', id=i['_id'], typ='edit') }}">Edit</a></button>
-                                <button><a href="{{ url_for('blog', id=i['_id'], typ='dlt') }}">Delete</a></button>
+                                <button class="c"><a class="c" href="{{ url_for('blog', id=i['_id'], typ='edit') }}">Edit</a></button>
+                                <button class="c"><a class="c" href="{{ url_for('blog', id=i['_id'], typ='dlt') }}">Delete</a></button>
                             </div>
                         {% endif %}
                     </div>
@@ -40,14 +57,14 @@
         <div class="rightcolumn">
             <div class="card">
                 <form method="post">
-                <div class="col">
+                    <div class="col">
                         <input height="2px" type="hidden" name="ide" value="{{ pre_id }}"><br/><br/></div>
                     <div class="col">
-                    <h3>Post a blog</h3>
+                        <h3>Post a blog</h3>
                         <div class="row gy-4">
                             <div class="col">
                                 <input type="text" name="tittle" class="form-control" required
-                                      value="{{ pre_tittle }}" placeholder="Title of Your Blog"/>
+                                       value="{{ pre_tittle }}" placeholder="Title of Your Blog"/>
                             </div>
                             <div>
                                 <input type="file" name="image" class="form-control" value="{{ pre_photo }}" required/>
@@ -63,7 +80,7 @@
                             {% endif %}
                         </div>
                         <div class="text-center">
-                            <button class="my-5" type="submit">Post Now</button>
+                            <button class="my-5 c" type="submit">Post Now</button>
                         </div>
                 </form>
             </div>
@@ -72,12 +89,6 @@
                 <div class="fakeimg" style="height:100px;">Image</div>
                 <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
             </div>
-            {#            <div class="card">#}
-            {#                <h3>Popular Post</h3>#}
-            {#                <div class="fakeimg">Image</div><br>#}
-            {#                <div class="fakeimg">Image</div><br>#}
-            {#                <div class="fakeimg">Image</div>#}
-            {#            </div>#}
             <div class="card">
                 <footer id="footer" style="background-color: transparent">
                     <div class="footer-top" style="background-color: transparent">
@@ -101,8 +112,11 @@
         </div>
     </div>
 </div>
+<div style="padding-top: 20px; padding-left: 0px; padding-right: 0px; margin-right: 0px; margin-left: 0px">
 
-{% include "footer.html" %}
+    {% include "footer.html" %}
+</div>
+
 
 </body>
 </html>

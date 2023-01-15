@@ -36,6 +36,9 @@ pass_recover_info = mydb["pass_recover_info"]
 @app.route("/")
 def index():
     try:
+        NumberOfworker = len(list(worker_info.find()))
+        NumberOfClient = len(list(client_info.find()))
+        NumberOfdeal = len(list(deal_info.find()))
         if session["logged_in"]:
             se = []
             user = worker_info.find_one({'email': session["email"]})
@@ -258,7 +261,10 @@ def blog():
     havePost = False
     isPost = False
     for data in Blog_Info.find():
+        a = user_info.find_one({'email': data['email']})
+        data['name'] = a['name']
         list.append(data)
+        print(data)
         havePost = True
     print(list)
     result = ''
