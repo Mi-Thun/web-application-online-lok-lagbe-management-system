@@ -26,35 +26,42 @@
                 <li><a class="nav-link scrollto" href="/about/">About</a></li>
                 <li><a class="nav-link scrollto" href="/contact/">Contact</a></li>
                 {% if session["logged_in"] %}
-                    <li class="dropdown"><a id="notification-icon" href="#">
-                            <button id="show-page"><img src="/static/img/notification.png" alt="Notification icon"></button>
-                            <span class="notification-count"></span>
-                        </a>
-                    <ul>
-                        <li><a href="#">New Offer arrived check you mail</a></li>
-                    </ul>
+                    <li class="dropdown"><a id="notification-icon" href="">
+                        <span id="show-page"><img src="/static/img/notification1.png" alt="Notification icon"></span>
+                        <span style="color: red"><sup><b>{{ lengt }}</b></sup></span>
+                    </a>
+                        {% if haveNoti %}
+                            {% for i in se %}
+                                <ul>
+                                    <li>
+                                        <button><a href="{{ url_for('index', id=i['_id']) }}">New Offer arrived check
+                                            you mail.<br> Offer send by {{ i['name'] }}</a>
+                                        </button>
+                                    </li>
+                                </ul>
+                            {% endfor %}
+                        {% endif %}
                     </li>
-                    <li><a class="nav-link scrollto " href="/userprofile/"><img height="30px" width="30px"
-                                                                                src="/static/images/a.jpg"></a></li>
+
+                    <li class="dropdown"><a class="nav-link scrollto " href="#"><img height="30px" width="30px"
+                                                                                     src="/static/img/userprofile.png"><span> {{ session["name"] }}</span>
+                </a>
+                    <ul>
+                    <li><a class="nav-link scrollto " href="/userprofile/">User Profile</a></li>
                     <li><a class="nav-link scrollto " href="/logout/">Logout</a></li>
                     <iframe id="content" src="" style="display:none"></iframe>
                 {% else %}
                     <li><a class="nav-link scrollto " href="/login/">Login</a></li>
                 {% endif %}
+                </ul>
+                </li>
+                <i class="bi bi-list mobile-nav-toggle"></i>
             </ul>
-            <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
+
     </div>
 </header><!-- #header -->
 
-
-{#<script>#}
-{#    document.getElementById("show-page").addEventListener("click", function(){#}
-{#    document.getElementById("content").src = "client.html";#}
-{#    document.getElementById("content").style.display = "block";#}
-{#});#}
-
-</script>
 
 
 

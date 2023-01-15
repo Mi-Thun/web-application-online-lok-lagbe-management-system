@@ -35,6 +35,40 @@ pass_recover_info = mydb["pass_recover_info"]
 
 @app.route("/")
 def index():
+    try:
+        if session["logged_in"]:
+            se = []
+            user = worker_info.find_one({'email': session["email"]})
+            id = str(user['_id'])
+            for sen in deal_info.find({'Worker_uid': id, 'seen': 'no'}):
+                se.append(dict(sen))
+            lengt = len(se)
+            if len(se) > 0:
+                haveNoti = True
+            else:
+                haveNoti = False
+    except:
+        c =''
+    if request.args.get('id') is not None:
+        idf = request.args.get('id')
+        a = deal_info.find_one({'_id': ObjectId(idf)})
+        print(a)
+        del a["_id"]
+        a['seen'] = 'yes'
+        print(a)
+        deal_info.delete_one({'_id': ObjectId(idf)})
+        deal_info.insert_one(dict(a))
+        se = []
+        user = worker_info.find_one({'email': session["email"]})
+        id = str(user['_id'])
+        for sen in deal_info.find({'Worker_uid': id, 'seen': 'no'}):
+            se.append(dict(sen))
+        lengt = len(se)
+        if len(se) > 0:
+            haveNoti = True
+        else:
+            haveNoti = False
+
     return render_template('index.html', **locals())
 
 
@@ -198,6 +232,11 @@ def contact():
     return render_template("contact.html")
 
 
+@app.route('/organization/', methods=["GET", "POST"])
+def organization():
+    return render_template("organization.html")
+
+
 @app.route('/blog/', methods=["GET", "POST"])
 def blog():
     edit = False
@@ -295,6 +334,19 @@ def changePassword(n):
 @app.route('/service/<string:n>/', methods=["GET", "POST"])
 def service(n):
     n = str(n)
+    if n == 'helping_hand':
+        typ = 'Helping Hand '
+    elif n == 'plamber':
+        typ = 'Plamber'
+    elif n == 'electrician':
+        typ = 'Electrician'
+    elif n == 'chef':
+        typ = 'Chef'
+    elif n == 'driver':
+        typ = 'Driver'
+    elif n == 'baby_setter':
+        typ = 'Baby Setter'
+
     list = []
     listS = []
     isPost = False
@@ -332,19 +384,20 @@ def client():
         end_time = form_data["end_time"]
         Worker_uid = form_data['Worker_uid']
         worker_details = worker_info.find_one(ObjectId(Worker_uid))
-        # worker_email = worker_details['']
+        worker_email = worker_details['email']
         address = form_data['address']
         Work_Description = form_data["Work_Description"]
         name = form_data['name']
         phonenumber = form_data['phonenumber']
         email = form_data['email']
+
         dict = {'start_date': start_date, 'end_date': end_date, 'Start_Time': Start_Time,
                 'end_time': end_time, 'Worker_uid': Worker_uid, 'address': address,
                 'Work_Description': Work_Description,
-                'name': name, 'phonenumber': phonenumber, 'email': email}
+                'name': name, 'phonenumber': phonenumber, 'email': email, 'seen': 'no'}
         deal_info.insert_one(dict)
-        msg = Message('New offer arrived', sender='mohsenulkabirmi8486@gmail.com', recipients=['harbad345@gmail.com'])
-        msg.body = "You have a new offer."
+        msg = Message('New offer arrived', sender='mohsenulkabirmi8486@gmail.com', recipients=[worker_email])
+        msg.body = "You have a new offer by '"+ name + "'.Work Details, start_date:"+ start_date+ '; end_date:'+ end_date+ '; Start_Time:'+ Start_Time+ '; end_time:'+ end_time+'; address:'+address+'; Work_Description:'+ Work_Description+'; phonenumber:'+phonenumber+'; email:'+email
         mail.send(msg)
         return render_template("index.html", **locals())
     return render_template("client.html", **locals())

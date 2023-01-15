@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "head.html" %}
+</head>
+<div style="padding-bottom: 10px">
+    {% include "header.html" %}
+</div>
+
+<body>
+<div class="rounded bg-white mt-5 mb-5">
+    <form method="POST">
+        <div class="row">
+            <div class="col-md-3 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                </div>
+            </div>
+            <div class="col-md-5 border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">DEAL DETAIL</h4>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-3">
+                            Start Date:<input type="date" name = 'start_date' class="form-control" placeholder="first name" value=""
+                                              required>
+                        </div>
+                        <div class="col-md-3">
+                            End Date<input type="date" name = 'end_date' class="form-control" value="" placeholder="surname" required>
+                        </div>
+                        <div class="col-md-3">
+                            Start_Time:<input type="time" name="Start_Time" class="form-control" placeholder="first name" value=""
+                                              required>
+                        </div>
+                        <div class="col-md-3">
+                            End_Time<input type="time" name="end_time" class="form-control" value="" placeholder="surname" required>
+                        </div>
+                    </div>
+                </div>
+                <div >
+                  <div  class="col-md-12">
+                   Choose a Work type:
+                    <select name="pets" id="pet-select">
+                      <option value="">(Please choose an option)</option>
+                      <option value="Electrician">Electrician</option>
+                      <option value="Chef">Chef</option>
+                      <option value="Baby Setter">Baby Setter</option>
+                      <option value="Driver">Driver</option>
+                      <option value="Helping Hand">Helping Hand</option>
+                      <option value="Plumber">Plumber</option>
+                    </select>
+                    </div>
+                    </br>
+                    <div class="col-md-12">
+                         Number of Workers:<input type="text" name="workers" class="form-control" placeholder="Total Workers" value="">
+                        </br>
+                    </div>
+                    <div class="col-md-12">
+                        Address:<input type="text" name="address" class="form-control" placeholder="enter address line 1" value="">
+                        </br>
+                    </div>
+                    <div class="col-md-12">
+                        Work Description:<input type="text" name="Work_Description" class="form-control" placeholder="enter work details"
+                                                value="">
+                        </br>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                        Organization Name:<input type="text" name="name" class="form-control" placeholder="Name" value="" required>
+                        </br>
+                    </div>
+                    <div class="col-md-6">
+                        Contract Information:<input type="number" name="phonenumber" class="form-control" placeholder="Phone Number"
+                                                    value="" required>
+                        </br>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        Email ID:<input type="text" name="email" class="form-control" value="">
+                        </br>
+                    </div>
+                </div>
+                <div class="mt-5 text-center">
+                        <input type="submit" class="form-submit" value="Submit Request"/>
+                    </br>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+</div>
+
+<div>
+    {% include "footer.html" %}
+</div>
+
+</body>
+</html>
