@@ -12,7 +12,7 @@ app = Flask(__name__)
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USERNAME'] = 'mohsenulkabirmi8486@gmail.com'
-app.config['MAIL_PASSWORD'] = ''
+app.config['MAIL_PASSWORD'] = 'ofaossoisfxwmabz'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 
@@ -32,14 +32,21 @@ contact_info = mydb["contact_info"]
 client_info = mydb["client_info"]
 Blog_Info = mydb["Blog_Info"]
 pass_recover_info = mydb["pass_recover_info"]
+subscriber_info = mydb["subscriber"]
 
 
-@app.route("/")
+
+@app.route("/", methods=["GET", "POST"])
 def index():
+    if request.method == 'POST':
+        a = request.form['supemail']
+        print(a)
+        subscriber_info.insert_one({'email': a})
     try:
-        NumberOfworker = len(list(worker_info.find()))
-        NumberOfClient = len(list(client_info.find()))
+        NumberOfworker = len(list(user_info.find({'workertype': 'on'})))
+        NumberOfClient = len(list(user_info.find({'workertype': 'no'})))
         NumberOfdeal = len(list(deal_info.find()))
+        NumberOfdeal = NumberOfdeal + len(list(organization_deal_info.find()))
         if session["logged_in"]:
             se = []
             user = worker_info.find_one({'email': session["email"]})
@@ -72,7 +79,6 @@ def index():
             haveNoti = True
         else:
             haveNoti = False
-
     return render_template('index.html', **locals())
 
 
@@ -154,6 +160,9 @@ def userprofile():
 
     if result['workertype'] == 'on':
         info = worker_info.find_one({"email": session["email"]})
+        if info is None:
+            info = {}
+            info['img'] = 'fixpic.jpg'
         visibility1 = 'visible'
         if isPost:
             form_data = request.form
@@ -167,6 +176,7 @@ def userprofile():
             address = form_data["Address"]
             postcode = form_data['Postcode']
             area = form_data['Area']
+            img = form_data['image']
             city = form_data["City"]
             parea = form_data['Preferred area']
             experience = form_data['Experience']
@@ -188,7 +198,7 @@ def userprofile():
                     'area': area, 'city': city, 'parea': parea, 'experience': experience,
                     'additional': additional, 'sat': sat, 'sun': sun, 'mon': mon,
                     'tue': tue, 'wed': wed, 'thr': thr, 'ffri': ffri, 'type': type,
-                    'charge': charge, 'pass1': pass1}
+                    'charge': charge, 'img': img}
             worker_info.insert_one(dict)
             session["email"] = email
             session["name"] = name
@@ -196,6 +206,10 @@ def userprofile():
 
     if result['workertype'] == 'no':
         info = client_info.find_one({"email": session["email"]})
+        if info is None:
+            info = {}
+            info['img'] = 'fixpic.jpg'
+        print(info['img'])
         if isPost:
             form_data = request.form
             print(form_data)
@@ -209,12 +223,13 @@ def userprofile():
             postcode = form_data['Postcode']
             area = form_data['Area']
             city = form_data["City"]
+            img = form_data['image']
             pass1 = result['pass']
             user_info.delete_one({"email": session["email"]})
             user_info.insert_one({'name': name, 'email': email, 'pass': pass1, 'workertype': result['workertype']})
             dict = {'name': name, 'phone': phone, 'age': age, 'sex': sex,
                     'email': email, 'nid': nid, 'address': address, 'postcode': postcode,
-                    'area': area, 'city': city}
+                    'area': area, 'city': city, 'img': img}
             client_info.insert_one(dict)
             session["email"] = email
             session["name"] = name
@@ -236,7 +251,8 @@ def contact():
         message = form_data["message"]
         dict = {'name': name, 'email': email, 'subject': subject, 'message': message}
         contact_info.insert_one(dict)
-    return render_template("contact.html")
+        message = 'Received'
+    return render_template("contact.html", **locals())
 
 
 @app.route('/organization/', methods=["GET", "POST"])
@@ -251,6 +267,22 @@ def organization():
         organization_deal_info.insert_one(d)
         return render_template("index.html", **locals())
     return render_template("organization.html")
+
+
+@app.route('/orderHistory/')
+def orderHistory():
+    list = []
+    b = user_info.find_one({'email': session['email']})
+    print(b)
+    if b['workertype'] == 'on':
+        user = worker_info.find_one({'email': session['email']})
+        id = user['_id']
+        for i in deal_info.find({'Worker_uid': str(id)}):
+            list.append(i)
+    else:
+        for i in deal_info.find({'submitEmail': b}):
+            list.append(i)
+    return render_template("orderHistory.html", **locals())
 
 
 @app.route('/blog/', methods=["GET", "POST"])
@@ -292,18 +324,30 @@ def blog():
         result = ''
         isPost = False
         if request.method == "POST":
-            isPost = True
-            email = session['email']
-            tittle = request.form['tittle']
-            content = request.form['content']
-            image = request.form['image']
-            try:
-                Blog_Info.delete_one({'_id': ObjectId(request.form['ide'])})
-            except:
-                print('done')
-            Blog_Info.insert_one({'tittle': tittle, 'content': content, 'image': image, 'email': email})
-            result = "Insert Successfully"
-            print({'tittle': tittle, 'content': content, 'image': image})
+            a = dict(request.form)
+            if 'search' in a.keys():
+                print(request.form)
+                list = []
+                havePost = False
+                isPost = True
+                for data in Blog_Info.find({'tittle': request.form['search']}):
+                    list.append(data)
+                    print(data)
+                    havePost = True
+                print(list)
+            else:
+                isPost = True
+                email = session['email']
+                tittle = request.form['tittle']
+                content = request.form['content']
+                image = request.form['image']
+                try:
+                    Blog_Info.delete_one({'_id': ObjectId(request.form['ide'])})
+                except:
+                    print('done')
+                Blog_Info.insert_one({'tittle': tittle, 'content': content, 'image': image, 'email': email})
+                result = "Insert Successfully"
+                print({'tittle': tittle, 'content': content, 'image': image})
             return render_template("blog.html", **locals())
     return render_template("blog.html", **locals())
 
@@ -316,9 +360,10 @@ def logout():
 
 @app.route('/about/')
 def about():
-    NumberOfworker = len(list(worker_info.find()))
-    NumberOfClient = len(list(client_info.find()))
+    NumberOfworker = len(list(user_info.find({'workertype': 'on'})))
+    NumberOfClient = len(list(user_info.find({'workertype': 'no'})))
     NumberOfdeal = len(list(deal_info.find()))
+    NumberOfdeal = NumberOfdeal + len(list(organization_deal_info.find()))
     return render_template("about.html", **locals())
 
 
@@ -432,7 +477,7 @@ def client():
         dict = {'start_date': start_date, 'end_date': end_date, 'Start_Time': Start_Time,
                 'end_time': end_time, 'Worker_uid': Worker_uid, 'address': address,
                 'Work_Description': Work_Description,
-                'name': name, 'phonenumber': phonenumber, 'email': email, 'seen': 'no'}
+                'name': name, 'phonenumber': phonenumber, 'email': email, 'seen': 'no', 'submitEmail': session['email']}
         deal_info.insert_one(dict)
         msg = Message('New offer arrived', sender='mohsenulkabirmi8486@gmail.com', recipients=[worker_email])
         msg.body = "You have a new offer by '" + name + "'.Work Details, start_date:" + start_date + '; end_date:' + end_date + '; Start_Time:' + Start_Time + '; end_time:' + end_time + '; address:' + address + '; Work_Description:' + Work_Description + '; phonenumber:' + phonenumber + '; email:' + email

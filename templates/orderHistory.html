@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "head.html" %}
+</head>
+<div style="padding-bottom: 10px">
+    {% include "header.html" %}
+</div>
+
+<body>
+<div style="margin-right: 20%; margin-left: 20%; padding-top: 90px">
+        {% for i in list %}
+            <hr>
+            <p>Start Date: {{ i['start_date'] }}</p>
+            <p>End Date: {{ i['end_date'] }}</p>
+            <p>StartTime: {{ i['Start_Time'] }}</p>
+            <p>End Time: {{ i['end_time'] }}</p>
+            <p>Work Description: {{ i['Work_Description'] }}</p>
+            <p>Address: {{ i['address'] }}</p>
+            <p>Nane:: {{ i['name'] }}</p>
+            <p>Phone Number: {{ i['phonenumber'] }}</p>
+            <p>Sender email: {{ i['submitEmail'] }}</p>
+            <hr>
+        {% endfor %}
+</div>
+
+{% include "footer.html" %}
+
+</body>
+</html>
+

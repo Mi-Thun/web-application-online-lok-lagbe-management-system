@@ -32,15 +32,15 @@
                         <span style="color: red"><sup><b>{{ lengt }}</b></sup></span>
                     </a>
                         {% if haveNoti %}
+                            <ul>
                             {% for i in se %}
-                                <ul>
-                                    <li>
-                                        <button><a href="{{ url_for('index', id=i['_id']) }}">New Offer arrived check
+                                    <li style="align-content: flex-start">
+                                        <button style="border: white; background-color: white"><a href="{{ url_for('index', id=i['_id']) }}">New Offer arrived<br> check
                                             you mail.<br> Offer send by {{ i['name'] }}</a>
                                         </button>
                                     </li>
-                                </ul>
                             {% endfor %}
+                            </ul>
                         {% endif %}
                     </li>
 
@@ -49,6 +49,7 @@
                 </a>
                     <ul>
                     <li><a class="nav-link scrollto " href="/userprofile/">User Profile</a></li>
+                    <li><a class="nav-link scrollto " href="/orderHistory/">History</a></li>
                     <li><a class="nav-link scrollto " href="/logout/">Logout</a></li>
                     <iframe id="content" src="" style="display:none"></iframe>
                 {% else %}

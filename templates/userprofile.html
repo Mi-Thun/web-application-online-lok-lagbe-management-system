@@ -15,7 +15,7 @@
             <div class="col-md-3 border-right">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                     <img class="rounded-circle mt-5" width="150px"
-                         src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span
+                         src="/static/profilePic/{{ info['img'] }}"><span
                         class="font-weight-bold">{{ result['name'] }}</span><span
                         class="text-black-50"> {{ result['email'] }}</span><span> </span></div>
             </div>
@@ -49,6 +49,9 @@
                         </div>
                         <div class="col-md-12">
                             NID:<input type="file" name="NID" class="form-control" required/>
+                        </div>
+                        <div>
+                            Photo:<input type="file" name="image" class="form-control"/>
                         </div>
                         <div class="col-md-12">
                             Address:<input type="text" class="form-control" name="Address" placeholder="enter address line 1" value='{{ info['address'] }}' required>
